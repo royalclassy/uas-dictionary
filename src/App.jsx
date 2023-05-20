@@ -11,7 +11,7 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchASync("test");
+    fetchASync("keyboard");
   }, []);
 
   const fetchASync = async (word) => {

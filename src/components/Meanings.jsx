@@ -1,4 +1,5 @@
 export const Meanings = ({ partOfSpeech, definitions, synonyms }) => {
+  console.log(synonyms);
   return (
     <div>
       <h2 className="flex gap-6 items-center italic font-bold text-lg after:bg-slate-300 after:h-[1px] after:inline-block after:w-full">
@@ -18,7 +19,7 @@ export const Meanings = ({ partOfSpeech, definitions, synonyms }) => {
       {synonyms.length > 0 && (
         <div className="flex gap-4 mt-4">
           <p>Synonyms</p>
-          <div className="flex">
+          <div className="flex  flex-wrap">
             {synonyms.map((synonym) => (
               <a
                 className="text-lightPurple"
