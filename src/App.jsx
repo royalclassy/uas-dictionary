@@ -49,6 +49,7 @@ function App() {
               partOfSpeech={meaning.partOfSpeech}
               definitions={meaning.definitions}
               synonyms={meaning.synonyms}
+              antonyms={meaning.antonyms}
             ></Meanings>
           ))}
           <Source sourceUrl={word.sourceUrls}></Source>

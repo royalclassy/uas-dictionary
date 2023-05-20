@@ -1,5 +1,4 @@
-export const Meanings = ({ partOfSpeech, definitions, synonyms }) => {
-  console.log(synonyms);
+export const Meanings = ({ partOfSpeech, definitions, synonyms, antonyms }) => {
   return (
     <div>
       <h2 className="flex gap-6 items-center italic font-bold text-lg after:bg-slate-300 after:h-[1px] after:inline-block after:w-full">
@@ -19,7 +18,7 @@ export const Meanings = ({ partOfSpeech, definitions, synonyms }) => {
       {synonyms.length > 0 && (
         <div className="flex gap-4 mt-4">
           <p>Synonyms</p>
-          <div className="flex  flex-wrap">
+          <div className="flex gap-2 flex-wrap">
             {synonyms.map((synonym) => (
               <a
                 className="text-lightPurple"
@@ -27,6 +26,22 @@ export const Meanings = ({ partOfSpeech, definitions, synonyms }) => {
                 href={`https://api.dictionaryapi.dev/api/v2/entries/en/${synonym}`}
               >
                 {synonym}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+      {antonyms.length > 0 && (
+        <div className="flex gap-4 mt-4">
+          <p>Antonyms</p>
+          <div className="flex gap-2 flex-wrap">
+            {antonyms.map((antonym) => (
+              <a
+                className="text-lightPurple"
+                key={antonym}
+                href={`https://api.dictionaryapi.dev/api/v2/entries/en/${antonym}`}
+              >
+                {antonym}
               </a>
             ))}
           </div>
