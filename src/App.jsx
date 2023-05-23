@@ -9,7 +9,7 @@ import { Meanings } from "./components/Meanings";
 function App() {
   const [word, setWord] = useState();
   const [loading, setLoading] = useState(true);
-  // const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const [fontFamily, setFontFamily] = useState('sansSerif');
 
   useEffect(() => {
     fetchASync("keyboard");
