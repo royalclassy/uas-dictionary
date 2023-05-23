@@ -6,6 +6,15 @@ import { FontCanvas } from "./FontCanvas";
 
 export const Navbar = ({ fontFamily, onFontChange, toggleTheme }) => {
   const [isCanvasOpen, setIsCanvasOpen] = useState(false);
+  const textFontFamily = () => {
+    if (fontFamily === "font-sans") {
+      return "Sans-Serif";
+    } else if (fontFamily === "font-serif") {
+      return "Serif";
+    } else {
+      return "Mono";
+    }
+  };
 
   const onToggleCanvas = () => {
     setIsCanvasOpen((prev) => !prev);
@@ -21,13 +30,13 @@ export const Navbar = ({ fontFamily, onFontChange, toggleTheme }) => {
       <div className="flex gap-6">
         <div className="relative" onClick={onToggleCanvas}>
           <button className=" flex items-center gap-3 px-6 py-3 border-r-[1px] dark:border-[#3b3b3b]">
-            <p>{fontFamily}</p>
+            <p>{textFontFamily(fontFamily)}</p>
             <FontAwesomeIcon
               className="text-lightPurple"
               icon={faChevronDown}
             ></FontAwesomeIcon>
           </button>
-          <FontCanvas isCanvasOpen={isCanvasOpen} onFontChange={onFontChange}/>
+          <FontCanvas isCanvasOpen={isCanvasOpen} onFontChange={onFontChange} />
         </div>
         <ThemeSwitcher toggleTheme={toggleTheme}></ThemeSwitcher>
       </div>
