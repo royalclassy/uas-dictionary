@@ -7,6 +7,9 @@ export default {
       colors: {
         lightPurple: "hsl(274deg, 82%, 60%)",
       },
+      screens:{
+        desktop: '1440px'
+      }
     },
   },
   plugins: [],
