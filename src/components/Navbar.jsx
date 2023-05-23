@@ -4,7 +4,7 @@ import { ThemeSwitcher } from "./ThemeSwitcher";
 import { useState } from "react";
 import { FontCanvas } from "./FontCanvas";
 
-export const Navbar = ({ fontFamily, onFontChange, toggleTheme }) => {
+export const Navbar = ({ fontFamily, onFontChange, toggleTheme, isDark }) => {
   const [isCanvasOpen, setIsCanvasOpen] = useState(false);
   const textFontFamily = () => {
     if (fontFamily === "font-sans") {
@@ -38,7 +38,10 @@ export const Navbar = ({ fontFamily, onFontChange, toggleTheme }) => {
           </button>
           <FontCanvas isCanvasOpen={isCanvasOpen} onFontChange={onFontChange} />
         </div>
-        <ThemeSwitcher toggleTheme={toggleTheme}></ThemeSwitcher>
+        <ThemeSwitcher
+          toggleTheme={toggleTheme}
+          isDark={isDark}
+        ></ThemeSwitcher>
       </div>
     </div>
   );

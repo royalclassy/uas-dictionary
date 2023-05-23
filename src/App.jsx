@@ -6,22 +6,28 @@ import { useEffect, useState } from "react";
 import { fetchApi } from "./utils/helper";
 import { Meanings } from "./components/Meanings";
 import { Loading } from "./components/Loading";
+import { getFont, getTheme } from "./utils/localStorageUtils";
 
 function App() {
   const [word, setWord] = useState();
   const [loading, setLoading] = useState(true);
-  const [fontFamily, setFontFamily] = useState("font-mono");
+  const [fontFamily, setFontFamily] = useState(getFont());
+  const [isDark, setIsDark] = useState(getTheme());
 
   useEffect(() => {
     fetchASync("keyboard");
-  }, []);
+    if (isDark) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [isDark]);
 
   const fetchASync = async (word) => {
     try {
       setLoading(true);
       const result = await fetchApi(word);
       setWord(result);
-      console.log(result);
     } catch (error) {
       console.log(error);
     }
@@ -33,10 +39,16 @@ function App() {
   };
 
   const toggleTheme = () => {
-    document.body.classList.toggle("dark");
+    if (isDark) {
+      localStorage.setItem("theme", "light");
+    } else {
+      localStorage.setItem("theme", "dark");
+    }
+    setIsDark((prev) => !prev);
   };
 
   const onFontChange = (fontType) => {
+    localStorage.setItem("font", fontType);
     setFontFamily(fontType);
   };
 
@@ -49,6 +61,7 @@ function App() {
           fontFamily={fontFamily}
           onFontChange={onFontChange}
           toggleTheme={toggleTheme}
+          isDark={isDark}
         ></Navbar>
         <InputKeyword onSubmitHandler={onSubmitHandler} />
         {loading ? (
