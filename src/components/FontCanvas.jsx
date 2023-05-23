@@ -3,7 +3,7 @@ export const FontCanvas = ({ isCanvasOpen, onFontChange }) => {
     <div
       className={`${
         isCanvasOpen ? "flex" : "hidden"
-      } absolute shadow-lg rounded-lg bg-white flex-col gap-2 p-4 z-10 top-10 left-0`}
+      } absolute shadow-lg rounded-lg bg-white dark:bg-[#050505] dark:shadow-lightPurple flex-col gap-2 p-4 z-10 top-10 left-0`}
     >
       <button
         className="text-start hover:text-lightPurple font-sans"
