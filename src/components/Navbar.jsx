@@ -1,9 +1,12 @@
 import { faBook } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Toggle from "react-toggle";
 
-export const Navbar = () => {
+import "react-toggle/style.css";
+
+export const Navbar = ({ toggleTheme }) => {
   return (
-    <div className="flex mb-5">
+    <div className="flex mb-5 justify-between items-center">
       <div className="">
         <FontAwesomeIcon
           className="text-slate-500"
@@ -12,7 +15,7 @@ export const Navbar = () => {
         ></FontAwesomeIcon>
       </div>
       <div className="flex">
-        <div></div>
+        <Toggle onChange={toggleTheme}></Toggle>
       </div>
     </div>
   );

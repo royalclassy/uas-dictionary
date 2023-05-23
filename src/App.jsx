@@ -9,6 +9,7 @@ import { Meanings } from "./components/Meanings";
 function App() {
   const [word, setWord] = useState();
   const [loading, setLoading] = useState(true);
+  // const [isDarkTheme, setIsDarkTheme] = useState(false);
 
   useEffect(() => {
     fetchASync("keyboard");
@@ -26,13 +27,16 @@ function App() {
   };
 
   const onSubmitHandler = (word) => {
-    console.log(word);
     fetchASync(word);
   };
 
+  const toggleTheme = () => {
+    document.body.classList.toggle("dark");
+  };
+
   return (
-    <div className="flex flex-col gap-5 p-6 font-sans">
-      <Navbar></Navbar>
+    <div className="flex flex-col gap-5 p-6 font-sans dark:bg-[#050505] dark:text-[#f5f5f5]">
+      <Navbar toggleTheme={toggleTheme}></Navbar>
       <InputKeyword onSubmitHandler={onSubmitHandler} />
       {loading ? (
         <></>

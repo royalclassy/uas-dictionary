@@ -23,7 +23,8 @@ export const Meanings = ({ partOfSpeech, definitions, synonyms, antonyms }) => {
               <a
                 className="text-lightPurple"
                 key={synonym}
-                href={`https://api.dictionaryapi.dev/api/v2/entries/en/${synonym}`}
+                href={`https://
+                api.dictionaryapi.dev/api/v2/entries/en/${synonym}`}
               >
                 {synonym}
               </a>
