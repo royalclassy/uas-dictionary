@@ -21,7 +21,7 @@ export const Navbar = ({ fontFamily, onFontChange, toggleTheme, isDark }) => {
   };
 
   return (
-    <div className="flex mb-5 mt-7 justify-between items-center">
+    <div className="flex  mt-7 justify-between items-center">
       <FontAwesomeIcon className="text-slate-500" icon={faBook} size="2xl" />
       <div className="flex gap-6">
         <div className="relative" onClick={onToggleCanvas}>

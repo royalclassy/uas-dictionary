@@ -1,95 +1,46 @@
-import { InputKeyword } from "./components/InputKeyword";
-import { Navbar } from "./components/Navbar";
-import { Source } from "./components/Source";
-import { Terms } from "./components/Terms";
-import { useEffect, useState } from "react";
-import { fetchApi } from "./utils/helper";
-import { Meanings } from "./components/Meanings";
-import { Loading } from "./components/Loading";
-import { getFont } from "./utils/localStorageUtils";
+import { Route, Routes } from "react-router-dom";
+import { Login } from "./Pages/Login";
+import { Home } from "./Pages/Home";
 import useTheme from "./hooks/useTheme";
-import { useSearchParams } from "react-router-dom";
-import { NotFound } from "./components/NotFound";
+import { Register } from "./Pages/Register";
+import { useState } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { History } from "./Pages/History";
+import { getUser } from "./utils/helper";
 
 function App() {
-  const [word, setWord] = useState();
-  const [loading, setLoading] = useState(true);
-  const [fontFamily, setFontFamily] = useState(getFont());
-  const [searchParams, setSearchParams] = useSearchParams();
   const { isDark, toggleTheme } = useTheme();
-
-  useEffect(() => {
-    const word = searchParams.get("word");
-    if (word) {
-      fetchAsync(word);
-    } else {
-      fetchAsync("keyboard");
-    }
-  }, [searchParams]);
-
-  const fetchAsync = async (word) => {
-    try {
-      setLoading(true);
-      const result = await fetchApi(word);
-      setWord(result);
-    } catch (error) {
-      console.log(error);
-    }
-    setLoading(false);
-  };
-
-  const onSubmitHandler = (word) => {
-    setSearchParams({ word });
-  };
-
-  const onFontChange = (fontType) => {
-    localStorage.setItem("font", fontType);
-    setFontFamily(fontType);
-  };
+  const [user, setUser] = useState(getUser());
 
   return (
-    <div className="dark:bg-[#050505]">
-      <div
-        className={`flex flex-col gap-5 p-6 ${fontFamily} dark:bg-[#050505] min-h-screen dark:text-[#f5f5f5] desktop:w-[50%] desktop:m-auto`}
-      >
-        <Navbar
-          fontFamily={fontFamily}
-          onFontChange={onFontChange}
-          toggleTheme={toggleTheme}
-          isDark={isDark}
+    <div className="dark:bg-[#050505] min-h-screen">
+      <Routes>
+        <Route
+          path="/home"
+          element={
+            <Home user={user} isDark={isDark} toggleTheme={toggleTheme} />
+          }
         />
-        <InputKeyword
-          onSubmitHandler={onSubmitHandler}
-          searchParams={searchParams.get("word")}
-        />
-        {loading ? (
-          <Loading />
-        ) : word.error ? (
-          <NotFound />
-        ) : (
-          <>
-            <Terms
-              word={word.word}
-              phonetics={
-                word.phonetics.length === 0 ? word.word : word.phonetics[0].text
-              }
-              audio={
-                word.phonetics.length === 0 ? word.word : word.phonetics[0].text
-              }
-            />
-            {word.meanings.map((meaning, index) => (
-              <Meanings
-                key={`meaning-${index}`}
-                partOfSpeech={meaning.partOfSpeech}
-                definitions={meaning.definitions}
-                synonyms={meaning.synonyms}
-                antonyms={meaning.antonyms}
-              />
-            ))}
-            <Source sourceUrl={word.sourceUrls} />
-          </>
-        )}
-      </div>
+        <Route path="/login" element={<Login setUser={setUser} />} />
+        <Route
+          path="/register"
+          element={<Register setUser={setUser} />}
+        ></Route>
+        <Route path="/history" element={<History user={user}/>} />
+      </Routes>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 }

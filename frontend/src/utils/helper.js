@@ -10,3 +10,7 @@ export const fetchApi = async (word) => {
     return { error: true };
   }
 };
+
+export const getUser = () => {
+  return localStorage.getItem("user");
+};
