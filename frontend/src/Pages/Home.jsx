@@ -12,7 +12,7 @@ import { useSearchParams } from "react-router-dom";
 import { fetchApi } from "../utils/helper";
 import axios from "axios";
 
-export const Home = ({ user, isDark, toggleTheme }) => {
+export const Home = ({ user, isDark, toggleTheme, setUser }) => {
   const [word, setWord] = useState();
   const [loading, setLoading] = useState(true);
   const [fontFamily, setFontFamily] = useState(getFont());
@@ -61,7 +61,7 @@ export const Home = ({ user, isDark, toggleTheme }) => {
         toggleTheme={toggleTheme}
         isDark={isDark}
       />
-      <NavPage user={user} />
+      <NavPage user={user} setUser={setUser} />
       <InputKeyword
         onSubmitHandler={onSubmitHandler}
         searchParams={searchParams.get("word")}

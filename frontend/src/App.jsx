@@ -19,7 +19,12 @@ function App() {
         <Route
           path="/home"
           element={
-            <Home user={user} isDark={isDark} toggleTheme={toggleTheme} />
+            <Home
+              user={user}
+              setUser={setUser}
+              isDark={isDark}
+              toggleTheme={toggleTheme}
+            />
           }
         />
         <Route path="/login" element={<Login setUser={setUser} />} />
@@ -27,7 +32,7 @@ function App() {
           path="/register"
           element={<Register setUser={setUser} />}
         ></Route>
-        <Route path="/history" element={<History user={user}/>} />
+        <Route path="/history" element={<History user={user} />} />
       </Routes>
       <ToastContainer
         position="top-right"
