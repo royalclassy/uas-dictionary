@@ -1,4 +1,8 @@
 export const Meanings = ({ partOfSpeech, definitions, synonyms, antonyms }) => {
+  // const host =
+  // process.env.NODE_ENV === "production" ? "localhost:5000" : "localhost:5000";
+  const host = "http://localhost:5173";
+
   return (
     <div>
       <h2 className="flex gap-6 items-center italic font-bold text-lg after:bg-slate-300 after:h-[1px] after:inline-block after:w-full">
@@ -23,8 +27,7 @@ export const Meanings = ({ partOfSpeech, definitions, synonyms, antonyms }) => {
               <a
                 className="text-lightPurple"
                 key={synonym}
-                href={`https://
-                api.dictionaryapi.dev/api/v2/entries/en/${synonym}`}
+                href={`${host}/?word=${synonym}`}
               >
                 {synonym}
               </a>
@@ -40,7 +43,7 @@ export const Meanings = ({ partOfSpeech, definitions, synonyms, antonyms }) => {
               <a
                 className="text-lightPurple"
                 key={antonym}
-                href={`https://api.dictionaryapi.dev/api/v2/entries/en/${antonym}`}
+                href={`${host}/?word=${antonym}`}
               >
                 {antonym}
               </a>

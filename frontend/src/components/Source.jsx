@@ -12,7 +12,7 @@ export const Source = ({ sourceUrl }) => {
             size="xs"
             icon={faArrowUpRightFromSquare}
             className="text-slate-400"
-          ></FontAwesomeIcon>
+          />
         </span>
       </a>
     </div>

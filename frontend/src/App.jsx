@@ -6,28 +6,28 @@ import { useEffect, useState } from "react";
 import { fetchApi } from "./utils/helper";
 import { Meanings } from "./components/Meanings";
 import { Loading } from "./components/Loading";
-import { getFont, getTheme } from "./utils/localStorageUtils";
+import { getFont } from "./utils/localStorageUtils";
+import useTheme from "./hooks/useTheme";
+import { useSearchParams } from "react-router-dom";
+import { NotFound } from "./components/NotFound";
 
 function App() {
   const [word, setWord] = useState();
   const [loading, setLoading] = useState(true);
   const [fontFamily, setFontFamily] = useState(getFont());
-  const [isDark, setIsDark] = useState(getTheme());
+  const [searchParams, setSearchParams] = useSearchParams();
+  const { isDark, toggleTheme } = useTheme();
 
   useEffect(() => {
-    fetchASync("keyboard");
-  }, [])
-  
-
-  useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add("dark");
+    const word = searchParams.get("word");
+    if (word) {
+      fetchAsync(word);
     } else {
-      document.documentElement.classList.remove("dark");
+      fetchAsync("keyboard");
     }
-  }, [isDark]);
+  }, [searchParams]);
 
-  const fetchASync = async (word) => {
+  const fetchAsync = async (word) => {
     try {
       setLoading(true);
       const result = await fetchApi(word);
@@ -39,16 +39,7 @@ function App() {
   };
 
   const onSubmitHandler = (word) => {
-    fetchASync(word);
-  };
-
-  const toggleTheme = () => {
-    if (isDark) {
-      localStorage.setItem("theme", "light");
-    } else {
-      localStorage.setItem("theme", "dark");
-    }
-    setIsDark((prev) => !prev);
+    setSearchParams({ word });
   };
 
   const onFontChange = (fontType) => {
@@ -66,17 +57,26 @@ function App() {
           onFontChange={onFontChange}
           toggleTheme={toggleTheme}
           isDark={isDark}
-        ></Navbar>
-        <InputKeyword onSubmitHandler={onSubmitHandler} />
+        />
+        <InputKeyword
+          onSubmitHandler={onSubmitHandler}
+          searchParams={searchParams.get("word")}
+        />
         {loading ? (
-          <Loading></Loading>
+          <Loading />
+        ) : word.error ? (
+          <NotFound />
         ) : (
           <>
             <Terms
               word={word.word}
-              phonetics={word.phonetics[0].text}
-              audio={word.phonetics[0].audio}
-            ></Terms>
+              phonetics={
+                word.phonetics.length === 0 ? word.word : word.phonetics[0].text
+              }
+              audio={
+                word.phonetics.length === 0 ? word.word : word.phonetics[0].text
+              }
+            />
             {word.meanings.map((meaning, index) => (
               <Meanings
                 key={`meaning-${index}`}
@@ -84,9 +84,9 @@ function App() {
                 definitions={meaning.definitions}
                 synonyms={meaning.synonyms}
                 antonyms={meaning.antonyms}
-              ></Meanings>
+              />
             ))}
-            <Source sourceUrl={word.sourceUrls}></Source>
+            <Source sourceUrl={word.sourceUrls} />
           </>
         )}
       </div>

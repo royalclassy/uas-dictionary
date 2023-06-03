@@ -7,6 +7,6 @@ export const fetchApi = async (word) => {
     );
     return result.data[0];
   } catch (error) {
-    console.log(error.message);
+    return { error: true };
   }
 };

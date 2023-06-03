@@ -1,6 +1,6 @@
 import { faMoon } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Toggle  from "react-toggle";
+import Toggle from "react-toggle";
 import "react-toggle/style.css";
 
 export const ThemeSwitcher = ({ toggleTheme, isDark }) => {
@@ -11,12 +11,12 @@ export const ThemeSwitcher = ({ toggleTheme, isDark }) => {
         icons={false}
         onChange={toggleTheme}
         defaultChecked={isDark}
-      ></Toggle>
+      />
       <FontAwesomeIcon
         className="text-[#757575] dark:text-lightPurple"
         icon={faMoon}
         size="xl"
-      ></FontAwesomeIcon>
+      />
     </div>
   );
 };

@@ -2,7 +2,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRef } from "react";
 
-export const InputKeyword = ({ onSubmitHandler }) => {
+export const InputKeyword = ({ onSubmitHandler, searchParams }) => {
   const wordInput = useRef();
 
   const onKeyDownHandler = (e) => {
@@ -20,6 +20,7 @@ export const InputKeyword = ({ onSubmitHandler }) => {
         placeholder="Search for any word..."
         onKeyDown={onKeyDownHandler}
         ref={wordInput}
+        defaultValue={searchParams}
       />
       <label
         htmlFor="searchKeyword"
@@ -29,7 +30,7 @@ export const InputKeyword = ({ onSubmitHandler }) => {
           className="text-lightPurple"
           icon={faMagnifyingGlass}
           size="lg"
-        ></FontAwesomeIcon>
+        />
       </label>
     </div>
   );
