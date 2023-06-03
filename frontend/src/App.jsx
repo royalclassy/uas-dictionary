@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { Login } from "./Pages/Login";
 import { Home } from "./Pages/Home";
 import useTheme from "./hooks/useTheme";
@@ -33,6 +33,7 @@ function App() {
           element={<Register setUser={setUser} />}
         ></Route>
         <Route path="/history" element={<History user={user} />} />
+        <Route path="*" element={<Navigate to={'/home'}/>}></Route>
       </Routes>
       <ToastContainer
         position="top-right"

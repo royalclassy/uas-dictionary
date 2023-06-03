@@ -27,7 +27,7 @@ export const Meanings = ({ partOfSpeech, definitions, synonyms, antonyms }) => {
               <a
                 className="text-lightPurple"
                 key={synonym}
-                href={`${host}/?word=${synonym}`}
+                href={`${host}/home/?word=${synonym}`}
               >
                 {synonym}
               </a>
@@ -43,7 +43,7 @@ export const Meanings = ({ partOfSpeech, definitions, synonyms, antonyms }) => {
               <a
                 className="text-lightPurple"
                 key={antonym}
-                href={`${host}/?word=${antonym}`}
+                href={`${host}/home/?word=${antonym}`}
               >
                 {antonym}
               </a>
