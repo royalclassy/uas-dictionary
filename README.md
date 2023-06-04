@@ -51,7 +51,7 @@ CREATE TABLE user (
 👤 **kurniakun17**
 
 * Github: [@royalclassy](https://github.com/royalclassy) [@kurniakun17](https://github.com/kurniakun17)
-* LinkedIn: [@Esterlita Nugraheni P](https://www.linkedin.com/in/esterlitanp/?originalSubdomain=id) [@Kurnia Kharisma AS]([https://www.linkedin.com/in/esterlitanp/?originalSubdomain=id](https://www.linkedin.com/in/kurnia-kharisma-agung-samiadjie-88b54a224/))
+* LinkedIn: [@Esterlita Nugraheni P](https://www.linkedin.com/in/esterlitanp/?originalSubdomain=id) [@Kurnia Kharisma AS](https://www.linkedin.com/in/kurnia-kharisma-agung-samiadjie-88b54a224/)
 
 
 ## Show your support
