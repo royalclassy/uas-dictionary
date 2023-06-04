@@ -15,7 +15,7 @@ export const History = ({ user }) => {
         <h1 className="text-xl text-center font-bold my-6">History</h1>
         {historyData.length === 0 ? (
           <div>
-            <h1 className="">History is Empty :(</h1>
+            <h1 className="text-center">History is Empty :(</h1>
           </div>
         ) : (
           <table className="table-auto w-full rounded-md overflow-hidden">
