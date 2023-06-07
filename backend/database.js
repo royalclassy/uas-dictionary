@@ -33,6 +33,34 @@ export async function userLogin(username) {
   return rows[0];
 }
 
+export async function editHistory(historyID, newKeyword, username) {
+  try {
+    const [rows] = await pool.query(
+      "update history set keyword = ? where historyID = ?",
+      [newKeyword, historyID]
+    );
+    const editStatus = { ...rows, status: true };
+    if (editStatus.status) {
+      const res = await getAllHistory(username);
+      return res;
+    }
+    return editStatus;
+  } catch (error) {
+    return { message: error.message, status: false };
+  }
+}
+
+export async function deleteHistory(historyID, username) {
+  try {
+    const [rows] = await pool.query("delete from history where historyID = ?", [
+      historyID,
+    ]);
+    return rows;
+  } catch (error) {
+    return { message: error.message, status: false };
+  }
+}
+
 export async function userRegister(username, password) {
   try {
     const [rows] = await pool.query(
