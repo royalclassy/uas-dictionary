@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.custom-toggle .react-toggle-track {
+  @apply bg-[#757575] w-[40px] h-[20px];
+}
+
+.custom-toggle.react-toggle--checked .react-toggle-track {
+  @apply bg-[#a445ed]
+}
+
+.custom-toggle .react-toggle-thumb {
+  @apply w-[14px] h-[14px] top-[50%] translate-y-[-50%];
+}
+
+.react-toggle-thumb {
+  left: 3px;
+}
+
+.react-toggle--checked .react-toggle-thumb {
+  left: 24px;
+  border-color: inherit;
+}
+
+.react-toggle--focus .react-toggle-thumb {
+  box-shadow: none;
+}
+
+.react-toggle:active:not(.react-toggle--disabled) .react-toggle-thumb {
+  box-shadow: none;
+}
+
+.react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track{
+  background-color: #a445ed;
+}

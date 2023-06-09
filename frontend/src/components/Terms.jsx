@@ -25,9 +25,11 @@ export const Terms = ({ word, phonetics, audio }) => {
       >
         <FontAwesomeIcon
           size="xl"
-          className={`text-lightPurple relative right-[-2px] ${isPlayed && 'text-white'}`}
+          className={`text-lightPurple relative right-[-2px] ${
+            isPlayed && "text-white"
+          }`}
           icon={faPlay}
-        ></FontAwesomeIcon>
+        />
       </button>
     </div>
   );
